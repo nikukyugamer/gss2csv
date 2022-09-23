@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+require 'gss2csv'
+
+puts Gss2csv.greet('World!!')
+
+Gss2csv.debug

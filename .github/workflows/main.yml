@@ -25,3 +25,5 @@ jobs:
       run: bundle exec rubocop
     - name: Run the default task
       run: bundle exec rake
+    - name: RSpec を実行する
+      run: bundle exec rspec
