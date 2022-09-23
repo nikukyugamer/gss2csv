@@ -1,13 +1,39 @@
 AllCops:
-  TargetRubyVersion: 2.6
+  DisplayCopNames: true
+  Exclude:
+  - 'vendor/**/*'
+  - 'node_modules/**/*'
+  - 'spec/**/*'
+  - 'Guardfile'
+  - 'bin/**/*'
+  - 'tmp/**/*'
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
 
 Style/StringLiterals:
-  Enabled: true
-  EnforcedStyle: double_quotes
+  EnforcedStyle: single_quotes
 
 Style/StringLiteralsInInterpolation:
-  Enabled: true
-  EnforcedStyle: double_quotes
+  EnforcedStyle: single_quotes
 
-Layout/LineLength:
-  Max: 120
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+
+Metrics/BlockLength:
+  Max: 52
+
+Metrics/ClassLength:
+  Max: 500
+
+Metrics/CyclomaticComplexity:
+  Max: 16
+
+Metrics/MethodLength:
+  Max: 65
+
+Metrics/PerceivedComplexity:
+  Max: 17
+
+Metrics/ModuleLength:
+  Max: 160

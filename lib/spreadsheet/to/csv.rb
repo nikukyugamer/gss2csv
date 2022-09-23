@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "csv/version"
+require_relative 'csv/version'
 
 module Spreadsheet
   module To
