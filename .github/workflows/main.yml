@@ -14,8 +14,9 @@ jobs:
       matrix:
         ruby: ['3.1.2', '3.0.4', '2.7.6', '2.6.10']
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up Ruby
+    - name: $ git clone する
+      uses: actions/checkout@v3
+    - name: Ruby をセットアップする
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby }}

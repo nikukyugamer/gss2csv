@@ -1,10 +1,8 @@
-# frozen_string_literal: true
-
-require_relative 'lib/spreadsheet/to/csv/version'
+require_relative 'lib/ss2csv/version'
 
 Gem::Specification.new do |spec|
-  spec.name = 'spreadsheet-to-csv'
-  spec.version = Spreadsheet::To::Csv::VERSION
+  spec.name = 'ss2csv'
+  spec.version = Ss2csv::VERSION
   spec.authors = ['Osamu Takiya']
   spec.email = ['takiya@toran.sakura.ne.jp']
 
