@@ -1,0 +1,3 @@
+module Gss2csv
+  VERSION: String
+end

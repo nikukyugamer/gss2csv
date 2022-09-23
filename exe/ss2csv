@@ -1,4 +1,0 @@
-#!/usr/bin/env ruby
-require 'ss2csv'
-
-puts Ss2csv.greet('World!!')
