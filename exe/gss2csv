@@ -1,8 +1,11 @@
 #!/usr/bin/env ruby
 require 'gss2csv'
+require 'yaml'
 
 session = Gss2csv::Auth.session
-spreadsheet = Gss2csv::Spreadsheet.spreadsheet(session)
+settings_file_path = '/tmp/gss2csv_settings.yml'
+spreadsheet_id = YAML.load_file(settings_file_path).fetch('spreadsheet_id')
+spreadsheet = Gss2csv::Spreadsheet.spreadsheet(session, spreadsheet_id)
 worksheet_name = 'apps'
 target_worksheet = Gss2csv::Spreadsheet.worksheet_by_name(
   worksheet_name,

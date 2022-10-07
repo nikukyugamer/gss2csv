@@ -2,11 +2,20 @@ require 'yaml'
 
 module Gss2csv
   module Worksheet
-    # FIXME: 一時的にここに置いている
+    # FIXME: 一時的に /tmp に置いている
     SETTINGS_FILE_PATH = '/tmp/gss2csv_settings.yml'.freeze
 
+    # FIXME: 対症療法
+    def settings_file_path
+      if File.exist?(SETTINGS_FILE_PATH)
+        SETTINGS_FILE_PATH
+      else
+        'gss2csv_settings_sample.yml'
+      end
+    end
+
     def gss_to_hash(worksheet)
-      hash_key_style = YAML.load_file(SETTINGS_FILE_PATH).fetch('hash_key_style')
+      hash_key_style = YAML.load_file(settings_file_path).fetch('hash_key_style')
       headers = headers(hash_key_style)
 
       desired_hashes(worksheet, headers)
@@ -22,7 +31,7 @@ module Gss2csv
     end
 
     def required_column_numbers(worksheet)
-      required_column_names = YAML.load_file(SETTINGS_FILE_PATH).fetch('required_column_names')
+      required_column_names = YAML.load_file(settings_file_path).fetch('required_column_names')
       required_column_numbers = []
 
       (1..worksheet.num_cols).each do |col_number|
@@ -73,6 +82,7 @@ module Gss2csv
                     :headers,
                     :required_column_numbers,
                     :desired_hashes,
-                    :skip_row?
+                    :skip_row?,
+                    :settings_file_path
   end
 end

@@ -1,5 +1,5 @@
 insert_gss2csv_id: true # 未使用
-sheet_id: 12345-aBcDeFgHiJkLmNoPqRsTuVwXyZ
+spreadsheet_id: 12345-aBcDeFgHiJkLmNoPqRsTuVwXyZ
 target_spreadsheet_name: my_favorite_spreadsheet # 未使用
 target_worksheet_name: my_favorite_worksheet # 未使用
 target_column_names: # 未使用

@@ -4,7 +4,7 @@ require 'google_drive'
 
 module Gss2csv
   module Auth
-    # FIXME: 一時的にここに置いているが YAML で指定できるようにしたい
+    # FIXME: 一時的に /tmp に置いているが YAML で指定できるようにしたい
     CREDENTIALS_FILE_PATH = '/tmp/credentials.json'.freeze
 
     def session(credential_file_path: CREDENTIALS_FILE_PATH)
