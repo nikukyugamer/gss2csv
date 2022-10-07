@@ -1,6 +1,22 @@
 #!/usr/bin/env ruby
 require 'gss2csv'
+require 'yaml'
 
-puts Gss2csv.greet('World!!')
+session = Gss2csv::Auth.session
+settings_file_path = '/tmp/gss2csv_settings.yml'
+spreadsheet_id = YAML.load_file(settings_file_path).fetch('spreadsheet_id')
+spreadsheet = Gss2csv::Spreadsheet.spreadsheet(session, spreadsheet_id)
+worksheet_name = 'apps'
+target_worksheet = Gss2csv::Spreadsheet.worksheet_by_name(
+  worksheet_name,
+  spreadsheet
+)
 
-Gss2csv.debug
+required_column_numbers = Gss2csv::Worksheet.required_column_numbers(target_worksheet)
+
+headers = Gss2csv::Worksheet.headers(target_worksheet)
+desired_hashes = Gss2csv::Worksheet.desired_hashes(target_worksheet, headers)
+
+puts "required_column_numbers: #{required_column_numbers}"
+puts "desired_hashes.count: #{desired_hashes.count}"
+puts "desired_hashes[100]: #{desired_hashes[100]}"
