@@ -1,6 +1,6 @@
 require_relative 'lib/gss2csv/version'
 
-Gem::Specification.new do |spec|
+Gem::Specification.new do |spec| # rubocop:disable Gemspec/RequireMFA
   spec.name = 'gss2csv'
   spec.version = Gss2csv::VERSION
   spec.authors = ['Osamu Takiya']
