@@ -1,9 +1,19 @@
+# ゆるすぎるのでいったんコメントアウト
+# inherit_from: .rubocop_todo.yml
+
+require:
+  - rubocop-rails
+
 AllCops:
+  NewCops: enable
   DisplayCopNames: true
   Exclude:
   - 'vendor/**/*'
   - 'node_modules/**/*'
   - 'spec/**/*'
+  - 'db/schema.rb'
+  - 'db/**/*'
+  - 'config/**/*'
   - 'Guardfile'
   - 'bin/**/*'
   - 'tmp/**/*'
