@@ -1,0 +1,21 @@
+insert_gss2csv_id: true # 未使用
+sheet_id: 12345-aBcDeFgHiJkLmNoPqRsTuVwXyZ
+target_spreadsheet_name: my_favorite_spreadsheet # 未使用
+target_worksheet_name: my_favorite_worksheet # 未使用
+target_column_names: # 未使用
+  - foo
+  - bar
+  - hoge
+
+# ここのカラムのセルが空っぽである行はスキップされる
+# target_column_names に含まれている必要はない
+required_column_names:
+  - hoge
+  - fuga
+  - foo
+
+append_datetime_to_csv: true # 未使用
+csv_file_name: gss2csv.csv  # 未使用
+
+# symbol or string
+hash_key_style: symbol
