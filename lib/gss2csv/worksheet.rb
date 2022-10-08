@@ -75,6 +75,7 @@ module Gss2csv
     def skip_row?(worksheet, value, col_number)
       required_column_numbers = required_column_numbers(worksheet)
 
+      # NOTE: blank? とか present? は ActiveSupport に依存している
       required_column_numbers.include?(col_number) && value.empty?
     end
 
