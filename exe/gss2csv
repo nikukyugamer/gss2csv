@@ -1,22 +1,41 @@
 #!/usr/bin/env ruby
+
 require 'gss2csv'
 require 'yaml'
+require 'thor'
 
-session = Gss2csv::Auth.session
-settings_file_path = '/tmp/gss2csv_settings.yml'
-spreadsheet_id = YAML.load_file(settings_file_path).fetch('spreadsheet_id')
-spreadsheet = Gss2csv::Spreadsheet.spreadsheet(session, spreadsheet_id)
-worksheet_name = 'apps'
-target_worksheet = Gss2csv::Spreadsheet.worksheet_by_name(
-  worksheet_name,
-  spreadsheet
-)
+class App < Thor
+  desc 'desired', 'スプレッドシートからデータをハッシュで持ってくる'
+  # method_option :settings, type: :string, default: "#{Dir.pwd}/settings.yml"
+  method_option :settings, type: :string, default: '/tmp/gss2csv_settings.yml'
+  # method_option :creds, type: :string, default: "#{Dir.pwd}/credentials.json"
+  method_option :creds, type: :string, default: '/tmp/credentials.json'
+  method_option :ws_name, type: :string, default: 'apps'
 
-required_column_numbers = Gss2csv::Worksheet.required_column_numbers(target_worksheet)
+  def desired # rubocop:disable Metrics/AbcSize
+    session = Gss2csv::Auth.session(credential_file_path: options[:creds])
+    settings_file_path = options[:settings]
+    spreadsheet_id = YAML.load_file(settings_file_path).fetch('spreadsheet_id')
+    spreadsheet = Gss2csv::Spreadsheet.spreadsheet(session, spreadsheet_id)
+    worksheet_name = options[:ws_name]
+    target_worksheet = Gss2csv::Spreadsheet.worksheet_by_name(
+      worksheet_name,
+      spreadsheet
+    )
 
-headers = Gss2csv::Worksheet.headers(target_worksheet)
-desired_hashes = Gss2csv::Worksheet.desired_hashes(target_worksheet, headers)
+    required_column_numbers = Gss2csv::Worksheet.required_column_numbers(target_worksheet)
 
-puts "required_column_numbers: #{required_column_numbers}"
-puts "desired_hashes.count: #{desired_hashes.count}"
-puts "desired_hashes[100]: #{desired_hashes[100]}"
+    headers = Gss2csv::Worksheet.headers(target_worksheet)
+    desired_hashes = Gss2csv::Worksheet.desired_hashes(target_worksheet, headers)
+
+    puts "required_column_numbers: #{required_column_numbers}"
+    puts "desired_hashes.count: #{desired_hashes.count}"
+    puts "desired_hashes[100]: #{desired_hashes[100]}"
+  end
+
+  def self.exit_on_failure?
+    true
+  end
+end
+
+App.start

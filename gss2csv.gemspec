@@ -30,4 +30,5 @@ Gem::Specification.new do |spec| # rubocop:disable Gemspec/RequireMFA
   spec.require_paths = ['lib']
 
   spec.add_dependency 'google_drive'
+  spec.add_dependency 'thor'
 end
